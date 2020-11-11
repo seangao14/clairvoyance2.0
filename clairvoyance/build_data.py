@@ -6,10 +6,16 @@ import time
 import pickle
 
 from tqdm import tqdm
-from riot_api_helpers import *
-from game_parser import *
-from config import key
+from clairvoyance.riot_api_helpers import *
+from clairvoyance.game_parser import *
+from clairvoyance.config import key
 
+'''
+routing values:
+na1
+kr
+euw1
+'''
 
 def get_challengers(region):
     challengers = get_challengers(key, region).json()
@@ -26,7 +32,7 @@ def get_challengers(region):
             print(f'Error: {e}')
     return accountIds
 
-def get_gameIds(accountIds, region):
+def get_gameIds(accountIds):
     gameIds = []
     for idx in tqdm(accountIds):
         try:
