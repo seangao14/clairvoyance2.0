@@ -1,0 +1,37 @@
+{%extends 'base.html' %}
+
+{%block head%}
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Martel:wght@300&display=swap" rel="stylesheet">
+{%endblock%}
+
+{% block body %}
+<div class="container" id="home-container">
+  <div class="home-content">
+    <div class="home-top text-center">
+      <span id ="websiteTitle">CLAIRVOYANCE</span>
+      <p id="websiteSlogan">Deep learning predictions for League of Legends matches</p>
+    </div>
+
+
+  <!-- <div class="text-center"> 
+    <img src = "https://image.flaticon.com/icons/png/512/29/29072.png" id="websiteLogo" alt="Clairvoyance Logo"> 
+  </div> -->
+
+
+    <div class="search-container">
+      <form method="post">
+        <div class="input-group input-group-lg">
+          <input type="text" name="user" id="user" class="form-control" placeholder="Summoner name">
+          <button id="search-submit" type="submit" value="Search" class="btn btn-danger">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script scr="js/bootstrap.min,js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{%endblock%}

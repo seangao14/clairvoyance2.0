@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type = "text/css" href="{{url_for('static',filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" type = "text/css" href="{{url_for('static',filename='css/app.css') }}">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script scr="js/bootstrap.min,js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <ul class="navbar-nav">
+      <li class="logo"><a class="nav-link" href="/">Clairvoyance</a></li>
+      {% for item in nav.main %}
+      <li class="nav-item {{ 'active' if item.is_active else ''}}">
+        <a class="nav-link" href ="{{ item.url }}">{{ item.label }}</a>
+      </li>
+      {% endfor %}
+      <!-- <li class="nav-item active">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Calculator</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Poggers</a>
+      </li> -->
+    </ul>
+  </nav>
+      </div>
+
+    {% block body %}{% endblock %}
+    <div class="footer">
+      <p>Clairvoyance was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games.  Riot Games does not endorse or sponsor this project.</p>
+      <p>Icons created by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></p>
+    </div>
+</body>
+</html>

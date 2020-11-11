@@ -1,0 +1,110 @@
+{%extends 'Base.html'%}
+
+{%block head%}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{%endblock%}
+
+{%block body%}
+<div class="container g-container">
+    <h2>Match Graph</h2>
+    <div class="graph-container">
+        <div id="graph">
+        </div>
+    </div>
+    <div class="frames-container">
+        <h3>Frames</h3>
+        <ul class="frames-legend">
+            <li><strong>Kill: </strong><img src='../static/img/eventicons/BLUE_CHAMPION_KILL.png'></li>
+            <li><strong>Tower: </strong><img src='../static/img/eventicons/BLUE_TOWER_BUILDING_KILL.png'></li>
+            <li><strong>Inhibitor: </strong><img src='../static/img/eventicons/BLUE_INHIBITOR_BUILDING_KILL.png'></li>
+            <li><strong>Baron: </strong><img src='../static/img/eventicons/BLUE_BARON_NASHOR_KILL.png'></li>
+            <li><strong>Rift Herald: </strong><img src='../static/img/eventicons/BLUE_RIFTHERALD_KILL.png'></li>
+            <li><strong>Cloud Dragon: </strong><img src='../static/img/eventicons/BLUE_AIR_DRAGON_KILL.png'></li>
+            <li><strong>Ocean Dragon: </strong><img src='../static/img/eventicons/BLUE_WATER_DRAGON_KILL.png'></li>
+            <li><strong>Inferno Dragon: </strong><img src='../static/img/eventicons/BLUE_FIRE_DRAGON_KILL.png'></li>
+            <li><strong>Mountain Dragon: </strong><img src='../static/img/eventicons/BLUE_EARTH_DRAGON_KILL.png'></li>
+            <li><strong>Elder Dragon: </strong><img src='../static/img/eventicons/BLUE_ELDER_DRAGON_KILL.png'></li>
+        </ul>
+        <div class="frame-list">
+            {% for frame in frames %}
+            <ul class="frame">
+                <li class="frame-idx">{{frame.idx}}</li>
+                <li><a class="btn btn-primary btn-sm" href="/calculator/{{match}}/{{frame.idx}}"><svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-calculator" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M12 1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                    <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z"/>
+                  </svg></a></li>
+                {% for event in frame.events %}
+                <li class="frame-event">
+                    {% if event.team == 0 %}
+                        <img src='../static/img/eventicons/BLUE_{{event.name}}.png' style="width:20px;height:20px;">
+                    {% endif %}
+
+                    {% if event.team == 1 %}
+                        <img src='../static/img/eventicons/RED_{{event.name}}.png' style="width:20px;height:20px;">
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+    
+  
+</div>
+<script>
+    graph = document.getElementById('graph');
+    var predictions = {{ pred }}
+    var gd = {{ gd }}
+    var xpd = {{ xpd }}
+    // var len = predictions.length
+    var len = 90
+    var win = {
+        x: [...Array(predictions.length).keys()],
+        y: predictions,
+        type: 'scatter',
+        line: {
+            width: 10
+        }, 
+        name: 'Blue Side Win %',
+        hoverinfo: 'none'
+    }
+    var gold = {
+        x: [...Array(predictions.length).keys()],
+        y: gd,
+        type: 'scatter',
+        hoverinfo: 'none',
+        line: {
+            width: 10
+        }, 
+        name: 'Gold Difference'
+    }
+    var xp = {
+        x: [...Array(predictions.length).keys()],
+        y: xpd,
+        type: 'scatter',
+        name: 'EXP Difference',
+        line: {
+            width: 10
+        }, 
+        hoverinfo: 'none'
+    }
+    var data = [win, gold, xp];
+    var layout = {
+        yaxis: {title: 'Win %'},
+        yaxis2: {title: 'Gold Difference'},
+        yaxis3: {title: 'EXP Difference'},
+        // xaxis: {range: [0, 90]},
+        title: 'Match Statistics',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        font: {
+            color: '#ffffff',
+        }
+    };
+
+    Plotly.newPlot('graph', data, layout)
+   
+</script>
+
+{%endblock%}
+

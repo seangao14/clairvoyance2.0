@@ -1,0 +1,382 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;0,800;1,400;1,700&display=swap");
+
+body,
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #26315d;
+}
+
+.navbar{
+  background-color: #191919 !important;
+  color: #fff !important;
+}
+
+.nav-link{
+  color:#fff !important;
+  font-weight: 600;
+}
+.logo .nav-link{
+  text-transform: uppercase;
+  font-weight: 900 !important;
+  margin-right: 20px;
+}
+#websiteSlogan {
+  font-family: "Open Sans", sans-serif;
+  font-style: italic;
+  font-size: 1.2em;
+  color: #fff;
+}
+.container {
+  padding-top: 100px;
+  font-family: "Open Sans", sans-serif;
+}
+
+#websiteLogo {
+  height: 100px;
+  width: 100px;
+}
+
+#websiteTitle {
+  font-size: 8em;
+  vertical-align: middle;
+  font-family: "Open Sans", serif;
+  font-weight: 700;
+  line-height: 1;
+  padding-left: 0px;
+  color: white;
+}
+
+.home-top {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.search-container {
+  display: flex;
+}
+
+.search-container .input-group {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.search-container form {
+  width: 100%;
+}
+#home-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-top: -120px;
+}
+
+#search-submit {
+  margin-left: 10px;
+}
+
+.sidenav {
+  width: 130px;
+  position: fixed;
+  z-index: 1;
+  top: 250px;
+  left: 105px;
+  padding: 8px 0;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #2196f3;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #064579;
+}
+
+.main {
+  margin-left: 140px; /* Same width as the sidebar + left position in px */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+.circle {
+  width: 200px;
+  height: 200px;
+  line-height: 200px;
+  border-radius: 50%;
+  font-size: 45px;
+  color: #fff;
+  text-align: center;
+  background: rgb(86, 160, 230);
+}
+
+.btn-circle {
+  width: 200px;
+  height: 200px;
+  line-height: 200px;
+  border-radius: 50%;
+  font-size: 45px;
+  color: #fff;
+  text-align: center;
+  background: rgb(86, 160, 230);
+}
+
+/* Match History */
+.mh-container {
+  display: flex;
+}
+
+.summ-sidebar {
+  margin-right: 40px;
+}
+.summ-profile-box {
+  padding: 25px;
+}
+.summ-profile {
+  display: flex;
+}
+.summ-profile img {
+  width: 70px;
+  height: 70px;
+  margin-right: 20px;
+}
+.summ-info h5{
+    font-weight: 900;
+    margin-top: 5px;
+}
+
+.summ-header h4, .matches-header h4 {
+  font-size: 0.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  margin-bottom: 0;
+}
+
+.summ-header {
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.matches-header{
+    display:flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+.summ-header:after, .matches-header:after {
+  content: "";
+  flex: 1;
+  margin: auto;
+  border-bottom: 1px solid #fff;
+  margin-left: 0.25em;
+}
+.summ-profile-box,
+.matches {
+  background-color: #191919;
+  color: #fff;
+  border-radius: 2px;
+}
+
+.matches {
+    padding: 25px 50px 40px 50px;
+    margin-bottom: 40px;
+}
+
+
+.match-entry {
+  display: flex;
+  width: 700px;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #252525;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+.match-info {
+  width: 140px;
+  font-weight: bold;
+}
+
+.match-result {
+  font-weight: 900;
+  font-size: 1.2em;
+}
+.match-entry img {
+  height: 60px;
+  width: 60px;
+}
+.match-victory {
+  color: #7deb75;
+}
+.match-defeat {
+  color: #df5151;
+}
+
+.match-info,
+.match-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.match-stats{
+    font-size: 0.9em;
+}
+
+.match-graph {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.btn-graph {
+  padding: 7px;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.container h2 {
+  color: #fff;
+  font-weight: 900;
+  font-size: 4rem;
+}
+
+/* GRAPH */
+
+.gtitle{
+  font-weight: 900 !important;
+  text-transform: uppercase;
+}
+.graph-container{
+    background-color: #191919;
+    color: #fff;
+}
+
+.footer{
+    background-color: #191919;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+.frames-container{
+    margin-top: 20px;
+    padding: 25px;
+    background-color: #191919;
+    columns: #fff;
+    margin-bottom: 40px;
+}
+
+.frames-container h3{
+    color: #fff;
+    font-weight: bold;
+}
+
+.frame-list{
+    display: flex;
+    flex-wrap: none;
+    overflow-x: scroll;
+    width: 100%;
+}
+.frame{
+    list-style: none;
+    padding: 5px;
+    margin-right: 5px;
+    min-width: 50px;
+    color: #fff;
+    text-align: center;
+    background-color: #252525;
+    border-radius: 5px;
+}
+
+.frame-event{
+  margin-bottom: 7px;
+}
+
+.frames-legend{
+  list-style: none;
+  text-align: center;
+}
+.frames-legend li{
+  display: inline-block;
+  margin-right: 20px;
+  color:#fff;
+}
+.frames-legend li img{
+  width: 15px;
+  height: 15px;
+}
+.frame .btn{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.g-container{
+    width:95%;
+    max-width: 95%;
+}
+
+.frame-list::-webkit-scrollbar{
+  width: 0.5em;
+  height: 10px;
+}
+
+.frame-list::-webkit-scrollbar-thumb{
+  background-color: #848484;
+  border-radius: 5px;
+}
+
+/* .frame-idx{
+  display: flex;
+}
+
+.frame-idx:before, .frame-idx:after {
+  content: "";
+  flex: 1;
+  margin: auto;
+  border-bottom: 1px solid #fff;
+}
+
+.frame-idx:before{
+  margin-right: 10px;
+}
+
+.frame-idx:after{
+  margin-left: 10px;
+} */
+
+.error-content{
+  background-color: #191919;
+  color: #fff;
+  padding: 25px;;
+  border-radius: 5px;
+}
+
+.e-container{
+  height: 88vh;
+}
+.table-dark{
+  background-color: #191919;
+}
+
+.table-dark th, .table-dark td, .table-dark thead th {
+  border-color: #191919;
+}
