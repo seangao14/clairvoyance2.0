@@ -1,20 +1,20 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
+from clairvoyance.champ_utils import num_champs
 
 class Net(nn.Module):
     def __init__(self):
         super().__init__()
-        self.champ_fc1 = nn.Linear(304, 50, bias=False)
+        self.champ_fc1 = nn.Linear(num_champs*2, 50, bias=False)
         self.champ_fc2 = nn.Linear(50, 20, bias=False)
-        self.fc1 = nn.Linear(45, 32, bias=False)
+        self.fc1 = nn.Linear(45, 32)
         self.d1 = nn.Dropout(0.2)
         self.fc2 = nn.Linear(32, 2)
 
     
     def forward(self, x):
-        c = self.champ_fc1(x[:, 1:305])
+        c = self.champ_fc1(x[:, 25:])
         c = F.leaky_relu(c)
         c = self.champ_fc2(c)
         c = F.leaky_relu(c)
@@ -22,8 +22,7 @@ class Net(nn.Module):
         c = torch.mul(torch.tensor(a), c)
 
         # n for new
-        n = torch.cat((x[:, 0:1], c), dim=1)
-        n = torch.cat((n, x[:, 305:]), dim=1)
+        n = torch.cat((x[:, 0:25], c), dim=1)
 
         # print(n.shape)
         x = self.fc1(n)

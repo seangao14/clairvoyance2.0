@@ -3,6 +3,7 @@ import torch
 import torch.nn.functional as F
 
 from clairvoyance.pytorch_model import Net
+from clairvoyance.champ_utils import num_champs
 
 def load_model(path):
     model = Net()
@@ -14,7 +15,7 @@ def predict(game, model_name='pepega1.pth'):
     '''
     returns 1d array of win% for BLUE team from matchId
     '''
-    game = torch.tensor(game).float().reshape(-1,329)
+    game = torch.tensor(game).float().reshape(-1, num_champs*2+25)
     model = load_model(model_name)
     model.eval()
     outputs = model(game)
@@ -25,10 +26,10 @@ def get_gd(game):
     '''
     returns 1d array of gold diff, where it is BLUE - RED gold
     '''
-    return game[:,305]-game[:,306]
+    return game[:,1]-game[:,2]
 
 def get_xpd(game):
     '''
     returns 1d array of exp diff, BLUE - RED
     '''
-    return game[:,307]-game[:,308]
+    return game[:,3]-game[:,4]

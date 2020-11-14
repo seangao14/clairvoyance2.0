@@ -157,19 +157,20 @@ def parse_game(timeline, match):
         '''
         data architecture:
             time        (1)
-            champions   (304 @ seraphine release)
             total gold  (2)
             total exp   (2)
             blue kills  (1)
             red kills   (1)
             blue towers (1)
             red towers  (1)
+            blue inhibs (1)
+            red inhibs  (1)
             blue monster(7) [air, earth, fire, water, elder, herald, baron]
             red monster (7)
+            champions   (304 @ seraphine release)
         '''
 
         frame = [timestamp/2400000]         # normalize by 40 minutes
-        frame.extend(champs)
         frame.extend([bg/100000])
         frame.extend([rg/100000])
         frame.extend([bxp/91800])            # 18360 for lvl 18, 18360*5 = 91800
@@ -182,6 +183,7 @@ def parse_game(timeline, match):
         frame.extend([ri/3])
         frame.extend(brmk[0])
         frame.extend(brmk[1])
+        frame.extend(champs)
 
         data.append(frame)
         y.append(winner)
@@ -242,8 +244,9 @@ def custom_game(timestamp, champions, blue_gold, red_gold, blue_levels, red_leve
     five_hot2 = np.zeros((len(champ_dict),), dtype=int)
     for k in r_picked:
         five_hot2[k] = 1
-    data = [timestamp] +  list(np.concatenate((five_hot1, five_hot2))) + [blue_gold/100000] + [red_gold/100000]
+    data = [timestamp] + [blue_gold/100000] + [red_gold/100000]
     data = data + [blue_exp/91800] + [red_exp/91800] + [bk/50] + [rk/50] + [bt/11] + [rt/11] + [bi/3]+ [ri/3] + bm + rm
+    data = data + list(np.concatenate((five_hot1, five_hot2)))
     return data
 
 def export_frame(matchId, frame):
@@ -251,7 +254,6 @@ def export_frame(matchId, frame):
     '''
     data architecture:
         time        (1)
-        champions   (304 @ seraphine release)
         total gold  (2) 305
         total exp   (2)
         blue kills  (1)
@@ -262,6 +264,7 @@ def export_frame(matchId, frame):
         red inhibs  (1)
         blue monster(7) [air, earth, fire, water, elder, herald, baron]
         red monster (7)
+        champions   (304 @ seraphine release)
     '''
 
     match = get_match(key, matchId).json()
@@ -270,24 +273,24 @@ def export_frame(matchId, frame):
     champ_ids = [player['championId'] for player in players]
     champs = [name_rid_dict[str(i)] for i in champ_ids]
 
-    bg = frame[305] * 100000
-    rg = frame[306] * 100000
+    bg = frame[1] * 100000
+    rg = frame[2] * 100000
 
-    bxp = frame[307]
-    rxp = frame[308]
+    bxp = frame[3]
+    rxp = frame[4]
 
-    bk = frame[309] * 50
-    rk = frame[310] * 50
+    bk = frame[5] * 50
+    rk = frame[6] * 50
 
-    bt = frame[311] * 11
-    rt = frame[312] * 11
+    bt = frame[7] * 11
+    rt = frame[8] * 11
 
-    bi = frame[313] * 3
-    ri = frame[314] * 3
+    bi = frame[9] * 3
+    ri = frame[10] * 3
 
-    bm = frame[315:322]
+    bm = frame[11:18]
     # print(bm)
-    rm = frame[322:]
+    rm = frame[18:25]
     # print(rm)
     baron, elder = 2, 2
 

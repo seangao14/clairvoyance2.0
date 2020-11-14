@@ -1,13 +1,14 @@
 import pandas as pd
 import json
+import requests
+from clairvoyance.config import patch
+
+champs = requests.get(f'http://ddragon.leagueoflegends.com/cdn/{patch}.1/data/en_US/champion.json').json()
 
 # rid = riot id for the champion
 
 # maps riot id to index
 def idx_from_rid():
-    with open('clairvoyance/data/champions.json', encoding='utf-8') as f:
-        champs = json.load(f)
-
     df = pd.DataFrame.from_dict(champs['data'], orient='index')
 
     names = df['key']
@@ -24,9 +25,6 @@ def idx_from_rid():
 
 # maps riot id to champion name
 def name_from_rid():
-    with open('clairvoyance/data/champions.json', encoding='utf-8') as f:
-        champs = json.load(f)
-
     df = pd.DataFrame.from_dict(champs['data'], orient='index')
 
     names = df['key']
@@ -35,9 +33,6 @@ def name_from_rid():
     return names_dict
 
 def idx_from_name():
-    with open('clairvoyance/data/champions.json', encoding='utf-8') as f:
-        champs = json.load(f)
-
     df = pd.DataFrame.from_dict(champs['data'], orient='index')
 
     names = df['key']
@@ -54,3 +49,5 @@ idx_rid_dict = idx_from_rid()
 name_rid_dict = name_from_rid()
 
 idx_name_dict = idx_from_name()
+
+num_champs = len(idx_rid_dict.keys())
