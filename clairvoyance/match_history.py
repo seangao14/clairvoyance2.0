@@ -75,8 +75,10 @@ def get_account_data(name):
             queue_type = 'Ranked Solo/Duo'
         elif queue_id == 430:
             queue_type = 'Normal Blind'
-        else:
+        elif queue_id == 440:
             queue_type = 'Ranked Flex'
+        elif queue_id == 700:
+            queue_type ='Clash'
 
         match_dict = {
             'id': game,

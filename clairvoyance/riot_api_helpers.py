@@ -18,7 +18,7 @@ def get_matchlist(api_key, arg, region='na1'):
     @arg takes accountId
     returns a json
     '''
-    url = f'https://{region}.api.riotgames.com/lol/match/v4/matchlists/by-account/{urllib.parse.quote(arg)}?queue=400&queue=420&queue=430&queue=440&endIndex=10&api_key={api_key}'
+    url = f'https://{region}.api.riotgames.com/lol/match/v4/matchlists/by-account/{urllib.parse.quote(arg)}?queue=700&queue=400&queue=420&queue=430&queue=440&endIndex=10&api_key={api_key}'
     return requests.get(url)
 
 def get_matchlist_(api_key, arg, region='na1'):
@@ -26,7 +26,7 @@ def get_matchlist_(api_key, arg, region='na1'):
     @arg takes accountId
     returns a json
     '''
-    url = f'https://{region}.api.riotgames.com/lol/match/v4/matchlists/by-account/{urllib.parse.quote(arg)}?queue=420&api_key={api_key}'
+    url = f'https://{region}.api.riotgames.com/lol/match/v4/matchlists/by-account/{urllib.parse.quote(arg)}?api_key={api_key}'
     return requests.get(url)
 
 def get_match(api_key, arg, region='na1'):
