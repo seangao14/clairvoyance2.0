@@ -76,7 +76,7 @@ def custom_calculator(match_id, frame_id):
     if request.method == 'POST':
         try:
             data = request.form
-            time = float(data['time'])
+            time = float(data['time'])/40
             champions = [data['b1'], data['b2'], data['b3'], data['b4'], data['b5'],
                         data['r1'], data['r2'], data['r3'], data['r4'], data['r5']]
             
@@ -165,7 +165,7 @@ def calculator():
     if request.method == 'POST':
         try:
             data = request.form
-            time = float(data['time'])
+            time = float(data['time'])/40
             champions = [data['b1'], data['b2'], data['b3'], data['b4'], data['b5'],
                         data['r1'], data['r2'], data['r3'], data['r4'], data['r5']]
             

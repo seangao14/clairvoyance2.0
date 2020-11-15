@@ -349,7 +349,7 @@ def export_frame(matchId, frame):
     else: r_lvl = 1
 
     data = {
-        'time': frame[0],
+        'time': round(frame[0]*40, 2),
         'b1': champs[0],
         'b2': champs[1],
         'b3': champs[2],
