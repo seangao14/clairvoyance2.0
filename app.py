@@ -42,7 +42,7 @@ def graph(match_id):
         if frames == -1:
             return render_template('404.html', game = match_id)
         game = get_game_data(match_id)
-        print(game[0])
+        # print(game[0])
         pred = predict(game)
         gd = list(np.array(get_gd(game))*3 + 0.5)
         xpd = list(np.array(get_xpd(game))*4 + 0.5)
@@ -114,7 +114,6 @@ def custom_calculator(match_id, frame_id):
                 bk=bk, rk=rk, bt=bt, rt=rt, bi=bi, ri=ri, bm=bm, rm=rm)
             # print(game)
             # print(len(game))
-            print(game)
             pred = predict(game)
 
             # print(data)
