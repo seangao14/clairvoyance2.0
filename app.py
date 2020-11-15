@@ -42,6 +42,7 @@ def graph(match_id):
         if frames == -1:
             return render_template('404.html', game = match_id)
         game = get_game_data(match_id)
+        print(game[0])
         pred = predict(game)
         gd = list(np.array(get_gd(game))*3 + 0.5)
         xpd = list(np.array(get_xpd(game))*4 + 0.5)
@@ -75,6 +76,7 @@ def custom_calculator(match_id, frame_id):
     if request.method == 'POST':
         try:
             data = request.form
+            time = float(data['time'])
             champions = [data['b1'], data['b2'], data['b3'], data['b4'], data['b5'],
                         data['r1'], data['r2'], data['r3'], data['r4'], data['r5']]
             
@@ -107,11 +109,12 @@ def custom_calculator(match_id, frame_id):
             rm = [int(data['r_air']), int(data['r_earth']), int(data['r_fire']), int(data['r_water']), 
                     r_elder, int(data['r_herald']), r_baron]
             
-            game = custom_game(timestamp=0.5, champions=champions, 
+            game = custom_game(timestamp=time, champions=champions, 
                 blue_gold=bg, red_gold=rg, blue_levels=b_levels, red_levels=r_levels,
                 bk=bk, rk=rk, bt=bt, rt=rt, bi=bi, ri=ri, bm=bm, rm=rm)
             # print(game)
             # print(len(game))
+            print(game)
             pred = predict(game)
 
             # print(data)
@@ -146,6 +149,7 @@ def calculator():
 
 
     data = {
+        'time': '0',
         'b_air': '0', 
         'b_earth': '0', 
         'b_fire': '0', 
@@ -162,6 +166,7 @@ def calculator():
     if request.method == 'POST':
         try:
             data = request.form
+            time = float(data['time'])
             champions = [data['b1'], data['b2'], data['b3'], data['b4'], data['b5'],
                         data['r1'], data['r2'], data['r3'], data['r4'], data['r5']]
             
@@ -194,7 +199,7 @@ def calculator():
             rm = [int(data['r_air']), int(data['r_earth']), int(data['r_fire']), int(data['r_water']), 
                     r_elder, int(data['r_herald']), r_baron]
             
-            game = custom_game(timestamp=0.5, champions=champions, 
+            game = custom_game(timestamp=time, champions=champions, 
                 blue_gold=bg, red_gold=rg, blue_levels=b_levels, red_levels=r_levels,
                 bk=bk, rk=rk, bt=bt, rt=rt, bi=bi, ri=ri, bm=bm, rm=rm)
             # print(game)
